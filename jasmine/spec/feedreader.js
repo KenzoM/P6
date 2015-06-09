@@ -37,7 +37,7 @@ $(function() {
             for (var i = 0 ; i < allFeeds.length; i++){
                 expect(allFeeds[i].url).toBeDefined();
                 expect(allFeeds[i].url.length).not.toBe(0);
-            }
+            };
          })
 
 
@@ -45,6 +45,13 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+         it('Name are defined', function(){
+            //expect(allFeeds[1].url).toBeDefined();
+            for (var i = 0 ; i < allFeeds.length; i++){
+                expect(allFeeds[i].name).toBeDefined();
+                expect(allFeeds[i].name.length).not.toBe(0);
+            }
+         })
     });
 
 
