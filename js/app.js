@@ -79,6 +79,8 @@ function loadFeed(id, cb) {
         if (cb) {
             cb();
         }
+
+        console.log(container.length)
     });
 }
 

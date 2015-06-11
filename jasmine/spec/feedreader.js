@@ -95,6 +95,20 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
 
+         beforeEach(function(done) {
+            setTimeout(function() {
+                loadFeed(0, done);
+            }, 4900); /*y default jasmine will wait 
+                      for 5 seconds for an asynchronous spec to 
+                      finish before causing a timeout failure
+                      */
+         });
+
+
+        it('should contain a feed element', function(done){
+            expect($('.feed').length).not.toBe(0);
+            done();
+        })  
     });
 
     /* TODO: Write a new test suite named "New Feed Selection"
