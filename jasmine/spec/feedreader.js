@@ -33,7 +33,6 @@ $(function() {
          */
 
          it('URL are defined', function(){
-            //expect(allFeeds[1].url).toBeDefined();
             for (var i = 0 ; i < allFeeds.length; i++){
                 expect(allFeeds[i].url).toBeDefined();
                 expect(allFeeds[i].url.length).not.toBe(0);
@@ -46,7 +45,6 @@ $(function() {
          * and that the name is not empty.
          */
          it('Name are defined', function(){
-            //expect(allFeeds[1].url).toBeDefined();
             for (var i = 0 ; i < allFeeds.length; i++){
                 expect(allFeeds[i].name).toBeDefined();
                 expect(allFeeds[i].name.length).not.toBe(0);
@@ -78,8 +76,7 @@ $(function() {
             expect($('body').hasClass("menu-hidden")).toBe(false);
             $('.menu-icon-link').trigger('click');
             expect($('body').hasClass("menu-hidden")).toBe(true);
-        })  
-
+        });  
     });
 
 
@@ -98,7 +95,7 @@ $(function() {
          beforeEach(function(done) {
             setTimeout(function() {
                 loadFeed(0, done);
-            }, 100); /*By default jasmine will wait 
+            }, 4000); /*By default jasmine will wait 
                       for 5 seconds for an asynchronous spec to 
                       finish before causing a timeout failure
                       */
@@ -115,36 +112,50 @@ $(function() {
 
     describe('New Feed Selection', function(){
 
+         // TODO: Write a test that ensures when a new feed is loaded
+         // by the loadFeed function that the content actually changes.
+         // Remember, loadFeed() is asynchronous.
+         /*
+         NOTE: This test will compare from the default index to index=3 as shown
+         in loadFeed(3,done) below under beforeEach function
+
+         oldContent variable will collect the newsfeed txt from the default index
+         newContent variable will collect the newsfeed txt from the index=3 or 
+         whatever you want to change the index
+         */
+
         var newContent;
         var oldContent;
 
          beforeEach(function(done) {
-            //$('.feed').empty();
-
+            oldContent = $('.feed').text(); 
             setTimeout(function() {
-                loadFeed(0, done);
-                oldContent = $('.feed').html(); 
-                console.log(oldContent);
-               // oldContent = $('.feed').html()
-            }, 2000); /*By default jasmine will wait 
-                      for 5 seconds for an asynchronous spec to 
-                      finish before causing a timeout failure
-                      */
-
+                loadFeed(3, done); //<--test here for content changing
+            }, 200);
          });
 
-         // TODO: Write a test that ensures when a new feed is loaded
-         // by the loadFeed function that the content actually changes.
-         // Remember, loadFeed() is asynchronous.
 
          it('new feed content is changed', function(done){
-            loadFeed(3,done);
-            newContent = $('.feed').html();
-           // console.log(oldContent)
-            console.log(newContent)
+
+            newContent = $('.feed').text(); 
+            // console.log("OLD CONTENT");
+            // console.log("********************");
+            // console.log(oldContent);
+            
+            // console.log("NEW CONTENT");
+            // console.log("********************");
+            // console.log(newContent);
             expect(oldContent).not.toBe(newContent);
-           // done();
+            done();
          });
+
+         /*Going back to default of the page
+            using loadFeed(0)*/
+         afterEach(function(done){ 
+            setTimeout(function() {
+                loadFeed(0, done);
+            }, 200);
+         })
     });
 
 
