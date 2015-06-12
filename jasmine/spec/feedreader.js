@@ -36,8 +36,8 @@ $(function() {
             for (var i = 0 ; i < allFeeds.length; i++){
                 expect(allFeeds[i].url).toBeDefined();
                 expect(allFeeds[i].url.length).not.toBe(0);
-            };
-         })
+            }
+         });
 
 
         /* TODO: Write a test that loops through each feed
@@ -49,7 +49,7 @@ $(function() {
                 expect(allFeeds[i].name).toBeDefined();
                 expect(allFeeds[i].name.length).not.toBe(0);
             }
-         })
+         });
     });
 
 
@@ -105,7 +105,7 @@ $(function() {
         it('should contain a feed element asynchronous', function(done){
             expect($('.feed').length).not.toBe(0);
             done();
-        })  
+        });  
     });
 
     /* TODO: Write a new test suite named "New Feed Selection"*/
@@ -141,7 +141,7 @@ $(function() {
             // console.log("OLD CONTENT");
             // console.log("********************");
             // console.log(oldContent);
-            
+
             // console.log("NEW CONTENT");
             // console.log("********************");
             // console.log(newContent);
@@ -155,7 +155,7 @@ $(function() {
             setTimeout(function() {
                 loadFeed(0, done);
             }, 200);
-         })
+         });
     });
 
 
