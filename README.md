@@ -3,9 +3,9 @@ Udacity Project 6--Feed Reader Testing
 Version 1.0.0 6/12/2015
 
 ##General Usage
-- The puprose of this project is to understand users the usage of Jasmine.js for testing functions in the web applications.
+- The purpose of this project is to understand users the usage of Jasmine.js for testing functions in the web applications.
 
-- Using Jasmine's library, as well as pre-written HTML/JS code that utilizes Google Feed API, users were instruscted to write some tests function to make sure the web application is working correctly.
+- Using Jasmine's library, as well as pre-written HTML/JS code that utilizes Google Feed API, users were instructed to write some tests function to make sure the web application is working correctly.
 
 -These tests include:
 
@@ -28,7 +28,7 @@ Version 1.0.0 6/12/2015
 ##How To Open
 1) Before starting the application, make sure that you have network connectivity.
 
-2) Open the index.html in your  favorite browser.
+2) Open the index.html in your favorite browser.
 
 3) Open your text-editor application and observe how the web application works. This will give you a better understanding on how to utilize Jasmine.js effectively. 
 
@@ -50,4 +50,4 @@ Github: Neotriz
 
 ##Future Work
 
-More testing functions will be included in the future to ensure the web application's reliability 
+More testing functions will be included in the future to ensure the web application's reliability
