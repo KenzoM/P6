@@ -1,4 +1,5 @@
-\Udacity Project 6--Feed Reader Testing
+Udacity Project 6--Feed Reader Testing
+
 Version 1.0.0 6/12/2015
 
 ##General Usage
@@ -7,7 +8,8 @@ Version 1.0.0 6/12/2015
 - Using Jasmine's library, as well as pre-written HTML/JS code that utilizes Google Feed API, users were instruscted to write some tests function to make sure the web application is working correctly.
 
 -These tests include:
-	-RSS feeds object:
+
+	- RSS feeds object:
 		-are defined
 		-URL property are defined
 		-Name property are defined
@@ -35,11 +37,17 @@ Version 1.0.0 6/12/2015
 ##Documentation 
 
 This web application is based on Udacity's NanoDegree program, specifically Project 6's Feed Reader testing.
+
 To find more information about the project's specification, you can visit Udacity's homepage:
 www.udacity.com
 
 
 Contact info:
+
 Email: kenzom954@gmail.com
+
 Github: Neotriz
+
 ##Future Work
+
+More testing functions will be included in the future to ensure the web application's reliability 
