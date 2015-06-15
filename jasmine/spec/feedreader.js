@@ -36,7 +36,7 @@ $(function() {
             allFeeds.forEach(function(feed){
                 expect(feed.url).toBeDefined();
                 expect(feed.url.length).not.toBe(0);
-            })
+            });
         });
 
         /* Similar to previous test, this checks the feed name in the allFeeds object
@@ -46,7 +46,7 @@ $(function() {
             allFeeds.forEach(function(feed){
                 expect(feed.name).toBeDefined();
                 expect(feed.name.length).not.toBe(0);
-            })
+            });
         });
     });
 
@@ -89,17 +89,6 @@ $(function() {
           */
 
         beforeEach(function(done) {
-            // setTimeout(function() {
-            //     $('.feed').empty(); 
-            //     loadFeed(0, done);
-            // }, 4000); 
-                    /*By default jasmine will wait 
-                      for 5 seconds for an asynchronous spec to 
-                      finish before causing a timeout failure
-                      */
-            //Note to Udacity: I wasnt sure if I had to implement a setTimeout method
-            //to emulate a asynchronous procedure. If not, then I will remove it :)
-
             $('.feed').empty(); //suggested by Udacity reviewr to remove children from .feed
             loadFeed(0, done);
         });
@@ -117,8 +106,10 @@ $(function() {
          /* This test to make sure that new feed's content is changed when loadFeed
             function is called using different index. 
 
-          * oldContent variable will collect the newsfeed txt from the beforeEach
-          * newContent variable will collect the newsfeed txt from the it-function
+          * oldContent variable will collect the newsfeed txt from after emptying out
+          * the contents in the beforeEach and load a news-feed when calling loadFeed function
+
+          * newContent variable will collect the newsfeed txt after calling the 2nd loadFeed function 
 
           * The actual test ( expect() ) is implemented in the afterEach 
           */
@@ -126,28 +117,22 @@ $(function() {
         var newContent;
         var oldContent;
 
-         beforeEach(function(done) {
+        beforeEach(function(done) {
             $('.feed').empty();
-            loadFeed(3, done) // <--call loadFeed index 3 to change content
-         });
- 
+            loadFeed(3, function() {
+                oldContent = $('.feed').text();
+                loadFeed(1, function(){
+                    newContent = $('.feed').text();
+                    done();
+                });
+            });
+        });
 
-         it('new feed content is changed', function(done){
-            oldContent = $('.feed').text();
-            loadFeed(2, done) // <--call loadFeed index 2 to change content
-         });
-
+        it('new feed content is changed', function(){
+            expect(oldContent).not.toBe(newContent);
+        });
 
          afterEach(function(done){
-            newContent = $('.feed').text();
-            // console.log("OLD CONTENT");
-            // console.log("********************");
-            // console.log(oldContent);
-
-            // console.log("NEW CONTENT");
-            // console.log("********************");
-            // console.log(newContent);
-            expect(oldContent).not.toBe(newContent);
             loadFeed(0, done); //return to default index
          });
     });
