@@ -110,7 +110,7 @@ $(function() {
                       */
             //Note to Udacity: I wasnt sure if I had to implement a setTimeout method
             //to emulate a asynchronous procedure. If not, then I will remove it :)
-        
+
             $('.feed').empty(); //suggested by Udacity reviewr to remove children from .feed
             loadFeed(0, done);
         });
@@ -133,25 +133,29 @@ $(function() {
          NOTE: This test will compare from the default index to index=3 as shown
          in loadFeed(3,done) below under beforeEach function
 
-         oldContent variable will collect the newsfeed txt from the default index
-         newContent variable will collect the newsfeed txt from the index=3 or 
-         whatever you want to change the index
+         oldContent variable will collect the newsfeed txt from the beforeEach
+         newContent variable will collect the newsfeed txt from the it-function
+
+         the test actually is implemented in the afterEach 
          */
 
         var newContent;
         var oldContent;
 
          beforeEach(function(done) {
-            oldContent = $('.feed').text(); 
-            setTimeout(function() {
-                loadFeed(3, done); //<--test here for content changing
-            }, 200);
+            $('.feed').empty();
+            loadFeed(3, done)
+         });
+ 
+
+         it('new feed content is changed', function(done){
+            oldContent = $('.feed').text();
+            loadFeed(2, done)
          });
 
 
-         it('new feed content is changed', function(done){
-
-            newContent = $('.feed').text(); 
+         afterEach(function(done){
+            newContent = $('.feed').text();
             // console.log("OLD CONTENT");
             // console.log("********************");
             // console.log(oldContent);
@@ -160,18 +164,8 @@ $(function() {
             // console.log("********************");
             // console.log(newContent);
             expect(oldContent).not.toBe(newContent);
-            done();
-         });
-
-         /*Going back to default of the page
-            using loadFeed(0)*/
-         afterEach(function(done){ 
-            setTimeout(function() {
-                loadFeed(0, done);
-            }, 200);
+            loadFeed(0, done); //return to default index
          });
     });
-
-
 }());
 
