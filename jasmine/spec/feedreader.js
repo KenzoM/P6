@@ -32,11 +32,19 @@ $(function() {
          * and that the URL is not empty.
          */
 
+         // it('URL are defined', function(){
+         //    for (var i = 0 ; i < allFeeds.length; i++){
+         //        expect(allFeeds[i].url).toBeDefined();
+         //        expect(allFeeds[i].url.length).not.toBe(0);
+         //    }
+         // });
+
+        //Udacity Reviewer suggested with using forEach loop for array
          it('URL are defined', function(){
-            for (var i = 0 ; i < allFeeds.length; i++){
-                expect(allFeeds[i].url).toBeDefined();
-                expect(allFeeds[i].url.length).not.toBe(0);
-            }
+            allFeeds.forEach(function(feed){
+                expect(feed.url).toBeDefined();
+                expect(feed.url.length).not.toBe(0);
+            })
          });
 
 
