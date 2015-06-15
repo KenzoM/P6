@@ -14,32 +14,24 @@ $(function() {
     * feeds definitions, the allFeeds variable in our application.
     */
     describe('RSS Feeds', function() {
-        /* This is our first test - it tests to make sure that the
-         * allFeeds variable has been defined and that it is not
-         * empty. Experiment with this before you get started on
-         * the rest of this project. What happens when you change
-         * allFeeds in app.js to be an empty array and refresh the
-         * page?
-         */
+
+
+        /* As instructed from Udacity, this the first test to understand
+         * how Jasmine works.
+         * This test check allFeeds variable (located in app.js), if the array
+         * is empty or undefined.
+         */ 
+
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
 
-
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
+        /* This test loops each of the feed in the allFeeds object and 
+         * make sure that its URL are defined and not empty
          */
 
-         // it('URL are defined', function(){
-         //    for (var i = 0 ; i < allFeeds.length; i++){
-         //        expect(allFeeds[i].url).toBeDefined();
-         //        expect(allFeeds[i].url.length).not.toBe(0);
-         //    }
-         // });
-
-        //Udacity Reviewer suggested with using forEach loop for array
+        //Udacity Reviewer suggested with using forEach loop, as opposed to forLoop
         it('URL are defined', function(){
             allFeeds.forEach(function(feed){
                 expect(feed.url).toBeDefined();
@@ -47,39 +39,37 @@ $(function() {
             })
         });
 
-
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
+        /* Similar to previous test, this checks the feed name in the allFeeds object
+         * are defined and not empty
          */
         it('Name are defined', function(){
-            for (var i = 0 ; i < allFeeds.length; i++){
-                expect(allFeeds[i].name).toBeDefined();
-                expect(allFeeds[i].name.length).not.toBe(0);
-            }
+            allFeeds.forEach(function(feed){
+                expect(feed.name).toBeDefined();
+                expect(feed.name.length).not.toBe(0);
+            })
         });
     });
 
 
-    /* TODO: Write a new test suite named "The menu" */
+    /* Write a new test suite named "The menu" */
     describe('The Menu',function(){
 
-        /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
-         */
+        /* This test checks to see if the menu element is hidden by default
+         * Using jQuery, it is possible to see if the class is set to "menu-hidden"
+         * by default
+         */ 
+
         it('is hidden by default', function(){
             expect($('body').hasClass("menu-hidden")).toBe(true);
         });
 
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
+          /* This test ensures that if the menu changes, the visibility toggles from hidden to
+           * visible and vice versa. Using jQuery and trigger(), we can emulate 
+           * as if the user click the specific element to see the class toggle 
+           */
+
         it('should toggle class when clicked', function(){
-            $('.menu-icon-link').trigger('click'); //trigger() automatically triggers the selected elemetn
+            $('.menu-icon-link').trigger('click'); //trigger() automatically triggers the selected element
             expect($('body').hasClass("menu-hidden")).toBe(false);
             $('.menu-icon-link').trigger('click');
             expect($('body').hasClass("menu-hidden")).toBe(true);
@@ -88,16 +78,15 @@ $(function() {
 
 
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+    /*Write a new test suite named "Initial Entries" */
 
     describe('Initial Entries', function(){
 
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test wil require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
-         */
+         /* This test makes sure the asynchronous process with loadFeed function
+            loading is done first to make sure there is at least a one .entry element
+            in the .feed container. 
+            done() and beforeEach is utlized for this test.
+          */
 
         beforeEach(function(done) {
             // setTimeout(function() {
@@ -118,39 +107,34 @@ $(function() {
 
         it('should contain a feed element asynchronous', function(){
             expect($('.feed').length).not.toBe(0);
-            //done();
         });  
     });
 
-    /* TODO: Write a new test suite named "New Feed Selection"*/
+    /* Write a new test suite named "New Feed Selection"*/
 
     describe('New Feed Selection', function(){
 
-         // TODO: Write a test that ensures when a new feed is loaded
-         // by the loadFeed function that the content actually changes.
-         // Remember, loadFeed() is asynchronous.
-         /*
-         NOTE: This test will compare from the default index to index=3 as shown
-         in loadFeed(3,done) below under beforeEach function
+         /* This test to make sure that new feed's content is changed when loadFeed
+            function is called using different index. 
 
-         oldContent variable will collect the newsfeed txt from the beforeEach
-         newContent variable will collect the newsfeed txt from the it-function
+          * oldContent variable will collect the newsfeed txt from the beforeEach
+          * newContent variable will collect the newsfeed txt from the it-function
 
-         the test actually is implemented in the afterEach 
-         */
+          * The actual test ( expect() ) is implemented in the afterEach 
+          */
 
         var newContent;
         var oldContent;
 
          beforeEach(function(done) {
             $('.feed').empty();
-            loadFeed(3, done)
+            loadFeed(3, done) // <--call loadFeed index 3 to change content
          });
  
 
          it('new feed content is changed', function(done){
             oldContent = $('.feed').text();
-            loadFeed(2, done)
+            loadFeed(2, done) // <--call loadFeed index 2 to change content
          });
 
 
