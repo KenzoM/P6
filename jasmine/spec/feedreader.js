@@ -40,30 +40,29 @@ $(function() {
          // });
 
         //Udacity Reviewer suggested with using forEach loop for array
-         it('URL are defined', function(){
+        it('URL are defined', function(){
             allFeeds.forEach(function(feed){
                 expect(feed.url).toBeDefined();
                 expect(feed.url.length).not.toBe(0);
             })
-         });
+        });
 
 
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
-         it('Name are defined', function(){
+        it('Name are defined', function(){
             for (var i = 0 ; i < allFeeds.length; i++){
                 expect(allFeeds[i].name).toBeDefined();
                 expect(allFeeds[i].name.length).not.toBe(0);
             }
-         });
+        });
     });
 
 
     /* TODO: Write a new test suite named "The menu" */
     describe('The Menu',function(){
-
 
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
@@ -100,14 +99,15 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
 
-         beforeEach(function(done) {
+        beforeEach(function(done) {
             setTimeout(function() {
+                $('.feed').empty(); //suggested by Udacity reviewr to remove children from .feed
                 loadFeed(0, done);
             }, 4000); /*By default jasmine will wait 
                       for 5 seconds for an asynchronous spec to 
                       finish before causing a timeout failure
                       */
-         });
+        });
 
 
         it('should contain a feed element asynchronous', function(done){
